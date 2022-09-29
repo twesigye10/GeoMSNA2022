@@ -14,7 +14,7 @@ options(scipen = 999)
 
 ## Reading CSV
 
-clean_data_with_rs_indicator <- read.csv("clean_data_with_rs_indicators.csv")
+clean_data_with_rs_indicator <- fetch_msna("irq")
 
 clean_data_with_rs_indicator <- clean_data_with_rs_indicator %>% filter(strata_and_pop_group != "Returnee HH_al_rutba")
 

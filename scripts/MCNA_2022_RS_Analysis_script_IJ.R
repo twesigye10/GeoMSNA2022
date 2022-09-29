@@ -12,7 +12,7 @@ options(scipen = 999)
 
 ## Calling dataset
 
-data_set <- read.csv("clean_data_with_rs_indicators.csv")
+data_set <- fetch_msna(country_code = "irq")
 
 data_set <- data_set %>% filter(strata_and_pop_group != "Returnee HH_al_rutba")
 
