@@ -26,3 +26,39 @@ repository to host this stage of analysis.
     to automatically create a markdown notebook
 -   Once exploratory data analysis has been performed the analyst should
     be sure to use weights for final analysis
+
+## First Steps
+
+You will need to decide on the variables in the HH data set that should
+be analyzed though a geospatial/climatic/environmental lens. Once you
+have done this you will find a rudimentary function called
+`load_core_hh_indicators.R` in the `R/` directory of this project. You
+can then add them to the function following the lead the `irq` team has
+provided. If you have the same variables as another country make sure
+you copy there label to use in your list.
+
+``` r
+
+load_core_hh_indicators <-  function(country_code="irq"){
+  if (country_code=="irq"){
+    res <- list(
+      # labels on left - column names on right
+      `Food Consumption Score (numeric)`= "fcs",
+      `Food Consumption Score (categorical)`= "fcs_category",
+      `Household Hunger Scale (categorical)` = "household_hunger_scale",
+      `main source of food (categorical)` = "food_source",
+      `HHH unemployed (categorical)` = "unemployed_seek_work",
+      `HH debt (numeric)` = "how_much_debt",
+      `debt per member > 90k (categorical)` = "g37"
+      
+    )
+    
+  }
+  if(country_code=="som"){
+    list(
+      
+    )
+  }
+  return(res)
+}
+```
