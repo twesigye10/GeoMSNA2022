@@ -6,7 +6,7 @@
 
 load_core_hh_indicators <-  function(country_code="irq"){
   if (country_code=="irq"){
-    list(
+    res <- list(
       `Food Consumption Score (numeric)`= "fcs",
       `Food Consumption Score (categorical)`= "fcs_category",
       `Household Hunger Scale (categorical)` = "household_hunger_scale",
@@ -23,6 +23,7 @@ load_core_hh_indicators <-  function(country_code="irq"){
       
     )
   }
+  return(res)
 }
 
 
