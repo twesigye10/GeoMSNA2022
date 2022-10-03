@@ -1,3 +1,9 @@
+#' load_core_hh_indicators
+#'
+#' @param country_code 
+#'
+#' @return named list containing variable column names and labels
+
 load_core_hh_indicators <-  function(country_code="irq"){
   if (country_code=="irq"){
     list(
