@@ -13,7 +13,7 @@ load_core_hh_indicators <-  function(country_code="irq"){
       `main source of food (categorical)` = "food_source",
       `HHH unemployed (categorical)` = "unemployed_seek_work",
       `HH debt (numeric)` = "how_much_debt",
-      `debt per member (categorical)` = "g37"
+      `debt per member > 90k (categorical)` = "g37"
       
     )
     
