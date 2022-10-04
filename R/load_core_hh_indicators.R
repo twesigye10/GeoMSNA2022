@@ -13,9 +13,11 @@ load_core_hh_indicators <-  function(country_code="irq"){
       `main source of food (categorical)` = "food_source",
       `HHH unemployed (categorical)` = "head_seek_work",
       `HH debt (numeric)` = "how_much_debt",
-      `debt per member > 90k (categorical)` = "g37"
-      `primary_livelihood (categorical)` = "primary_livelihood"
-      
+      `debt per member > 90k (categorical)` = "g37",
+      `HH income (numeric)`= "inc_employment_pension",
+      `Medical expense` = "medical_exp",
+      `Health issues chronic` = "health_issue_chronic"
+    
       
     )
     
