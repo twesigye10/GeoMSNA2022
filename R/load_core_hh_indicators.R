@@ -11,9 +11,11 @@ load_core_hh_indicators <-  function(country_code="irq"){
       `Food Consumption Score (categorical)`= "fcs_category",
       `Household Hunger Scale (categorical)` = "household_hunger_scale",
       `main source of food (categorical)` = "food_source",
-      `HHH unemployed (categorical)` = "unemployed_seek_work",
+      `HHH unemployed (categorical)` = "head_seek_work",
       `HH debt (numeric)` = "how_much_debt",
       `debt per member > 90k (categorical)` = "g37"
+      `primary_livelihood (categorical)` = "primary_livelihood"
+      
       
     )
     
