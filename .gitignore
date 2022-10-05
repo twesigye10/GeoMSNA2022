@@ -4,3 +4,4 @@
 .Ruserdata
 /data/*
 .xlsx*
+inst/doc
