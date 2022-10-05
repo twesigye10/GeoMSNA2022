@@ -52,7 +52,7 @@ debt_correlation_check <- weighted_pearson_test(data = data_set,dep_var = "how_m
                                                 strata = "strata_and_pop_group",survey_weights = "survey_weight",
                                                 ind_var = c("rs_NDVI_pct_median_May2022","rs_VCI_May2022","Distance_log"))
 
-
+## Function Needs fixing
 unemplyed_relation_check <- illuminate::weighted_t_test(data = data_set, 
                                                         binary_variable = "head_seek_work",
                                                         non_binary_variable =   c("rs_NDVI_pct_median_May2022","rs_VCI_May2022","Distance_log"),
@@ -61,7 +61,7 @@ unemplyed_relation_check <- illuminate::weighted_t_test(data = data_set,
 
 
 
-all_correlation_check <- fcs_correlation_check %>% bind_rows(debt_correlation_check,unemplyed_relation_check) 
+all_correlation_check <- fcs_correlation_check %>% bind_rows(debt_correlation_check) #unemplyed_relation_check 
 
 
 write_list <- list(
