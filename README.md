@@ -59,6 +59,13 @@ load_core_hh_indicators <-  function(country_code="irq"){
       
     )
   }
+  if(country_code=="nga"){
+    res <- list(
+      `Flooding Incident` = "nature_safety_incident/flooding",
+      `Livestock decrease (rain)` = "hoh_livestock_decrease/drought"
+    )
+    
+  }
   return(res)
 }
 ```
