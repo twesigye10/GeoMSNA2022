@@ -31,12 +31,17 @@ load_core_hh_indicators <-  function(country_code="irq"){
       # `HHH unemployed (categorical)` = "head_seek_work",
       `HH debt (numeric)` = "total_hh_debt", # seen
       # `debt per member > 90k (categorical)` = "g37",
-      `HH income (numeric)`= "total_house_income", # seen
+      `HH income (numeric)`= "total_house_income"#, # seen
       # `Medical expense` = "medical_exp",
       # `Health issues chronic` = "health_issue_chronic"
-      
-      
+    )  
+  }
+  if(country_code=="nga"){
+    res <- list(
+      `Flooding Incident` = "nature_safety_incident/flooding",
+      `Livestock decrease (rain)` = "hoh_livestock_decrease/drought"
     )
+    
   }
   return(res)
 }
