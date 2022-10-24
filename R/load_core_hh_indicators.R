@@ -23,7 +23,18 @@ load_core_hh_indicators <-  function(country_code="irq"){
     
   }
   if(country_code=="som"){
-    list(
+    res <- list(
+      `Food Consumption Score (numeric)`= "fcs", # seen
+      `Food Consumption Score (categorical)`= "i.fcs_cat", # seen
+      # `Household Hunger Scale (categorical)` = "household_hunger_scale",
+      # `main source of food (categorical)` = "food_source",
+      # `HHH unemployed (categorical)` = "head_seek_work",
+      `HH debt (numeric)` = "total_hh_debt", # seen
+      # `debt per member > 90k (categorical)` = "g37",
+      `HH income (numeric)`= "total_house_income", # seen
+      # `Medical expense` = "medical_exp",
+      # `Health issues chronic` = "health_issue_chronic"
+      
       
     )
   }
