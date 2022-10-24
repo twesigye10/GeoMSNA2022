@@ -1,0 +1,60 @@
+---
+title: "som_prelimary"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{som_prelimary}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = TRUE, warning = F, message = F
+)
+```
+
+```{r setup, include=FALSE}
+devtools::load_all()
+library(tidyverse)
+library(here)
+library(dplyr)
+library(readxl)
+library(openxlsx)
+library(purrr)
+library(srvyr)
+library(illuminate)
+library(sf)
+library(jtools)
+options(scipen = 999)
+
+```
+## Calling dataset
+
+```{r, echo = FALSE}
+sample_columns <- c("fcs", "fcs_category", "household_hunger_scale", 
+                    "food_source", "head_seek_work", "how_much_debt", "g37",
+                    "inc_employment_pension", "medical_exp", "health_issue_chronic")
+
+data_raw <- fetch_msna("som")
+# add cols
+data_set <- data_raw |> 
+  mutate(strata_and_pop_group = paste0(region,"_", district, "_", 
+                                       str_replace_all(string = str_to_lower(settlements), pattern = "-", "_")),
+         survey_weights = 1,
+         fcs = (fs_cereals_grains*2 + fs_beans_nuts*3 + fs_vegetables_leaves +  fs_fruits + fs_meat_fish*4 + fs_milk_dairy*4 + fs_sugar*0.5 + fs_oil*0.5),
+         i.fcs_cat= case_when(is.na(fcs) ~ "NA",
+                              fcs <= 21 ~ "Poor",
+                              fcs <= 35 ~ "Borderline",
+                              fcs <= 35 ~ "Borderline",
+                              TRUE ~ "Acceptable")) 
+  
+
+```
+
+```{r, echo = FALSE}
+
+```
+
+

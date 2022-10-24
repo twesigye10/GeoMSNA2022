@@ -1,0 +1,187 @@
+---
+title: "som_prelimary"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{som_prelimary}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+devtools::load_all()
+library(tidyverse)
+library(here)
+library(dplyr)
+library(readxl)
+library(openxlsx)
+library(purrr)
+library(srvyr)
+library(illuminate)
+library(sf)
+library(jtools)
+options(scipen = 999)
+
+```
+## Calling dataset
+
+```{r}
+sample_columns <- c("fcs", "fcs_category", "household_hunger_scale", 
+                    "food_source", "head_seek_work", "how_much_debt", "g37",
+                    "inc_employment_pension", "medical_exp", "health_issue_chronic")
+
+data_raw <- fetch_msna("som")
+# add cols
+data_set <- data_raw |> 
+  mutate(strata_and_pop_group = paste0(region,"_", district, "_", 
+                                       str_replace_all(string = str_to_lower(settlements), pattern = "-", "_")),
+         survey_weights = 1,
+         fcs = (fs_cereals_grains*2 + fs_beans_nuts*3 + fs_vegetables_leaves +  fs_fruits + fs_meat_fish*4 + fs_milk_dairy*4 + fs_sugar*0.5 + fs_oil*0.5),
+         i.fcs_cat= case_when(is.na(fcs) ~ "NA",
+                              fcs <= 21 ~ "Poor",
+                              fcs <= 35 ~ "Borderline",
+                              fcs <= 35 ~ "Borderline",
+                              TRUE ~ "Acceptable")) 
+  
+
+```
+
+## NDVI
+
+```{r}
+data_set |>
+  ggplot(aes(x=rs_NDVI_Mar2022)) +   
+  geom_histogram()
+
+data_set |>
+  ggplot(aes(x=rs_NDVI_Apr2022)) +   
+  geom_histogram()
+
+data_set |>
+  ggplot(aes(x=rs_NDVI_May2022)) +   
+  geom_histogram()
+```
+
+## NDVI Z score
+
+```{r}
+data_set |>
+  ggplot(aes(x=rs_NDVI_pct_median_Mar2022)) +   
+  geom_histogram()
+
+data_set |>
+  ggplot(aes(x=rs_NDVI_pct_median_Apr2022)) +   
+  geom_histogram()
+
+data_set |>
+  ggplot(aes(x=rs_NDVI_pct_median_May2022)) +   
+  geom_histogram()
+```
+
+## VCI
+
+```{r}
+plot_VCI_Mar2022 <- data_set |>
+  ggplot(aes(x=rs_VCI_Mar2022)) +
+  geom_histogram()
+
+plot_VCI_Apr2022 <- data_set |>
+  ggplot(aes(x=rs_VCI_Apr2022)) +
+  geom_histogram()
+
+plot_VCI_May2022 <- data_set |>
+  ggplot(aes(x=rs_VCI_May2022)) +
+  geom_histogram()
+
+ggplot2::facet_wrap(facets = c(plot_VCI_Mar2022, plot_VCI_Apr2022, plot_VCI_May2022), nrow = 1)
+
+```
+
+## SPI
+
+```{r}
+data_set |>
+  ggplot(aes(x=rs_May_spi1)) +
+  geom_histogram()
+
+data_set |>
+  ggplot(aes(x=rs_May_spi3)) +
+  geom_histogram()
+
+data_set |>
+  ggplot(aes(x=rs_May_spi6)) +
+  geom_histogram()
+
+data_set |>
+  ggplot(aes(x=rs_May_spi9)) +
+  geom_histogram()
+
+data_set |>
+  ggplot(aes(x=rs_May_spi12)) +
+  geom_histogram()
+
+```
+
+## dist_perm_water_pix
+
+```{r}
+data_set |>
+  ggplot(aes(x=rs_avg_dist_perm_water_pix_20172020)) +
+  geom_histogram()
+
+```
+
+## city_accessibility2015
+
+```{r}
+data_set |>
+  ggplot(aes(x=rs_city_accessibility2015)) +
+  geom_histogram()
+
+```
+
+## healthcare_accessbility
+
+```{r}
+data_set |>
+  ggplot(aes(x=rs_healthcare_accessbility_walking_only2019)) +
+  geom_histogram()
+
+data_set |>
+  ggplot(aes(x=rs_healthcare_accessibility2019)) +
+  geom_histogram()
+
+```
+
+## alos_landforms
+
+```{r}
+data_set |>
+  ggplot(aes(x=rs_alos_landforms)) +
+  geom_histogram(stat = "count")
+
+```
+## srtm_landforms
+
+```{r}
+data_set |>
+  ggplot(aes(x=rs_srtm_landforms)) +
+  geom_histogram(stat = "count")
+
+```
+
+## esri_lulc_10m
+
+```{r}
+data_set |>
+  ggplot(aes(x=rs_esri_lulc_10m)) +
+  geom_histogram(stat = "count")
+
+```
+
